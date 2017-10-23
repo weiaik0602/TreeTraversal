@@ -26,6 +26,38 @@ StringNode nodeAbraham = {&nodeAli,&nodeAbu,"Abraham"};
 StringNode nodeNoah = {&nodeDavid,&nodeSteven,"Noah"};
 StringNode nodeAdam = {&nodeAbraham,&nodeNoah,"Adam"};
 
+int inOrderGoldenVal[]={1,2,3,4,5,7,10,15,20,24,25,28};
+int postOrderGoldenVal[]={1,3,2,7,5,4,15,24,28,225,20,10};
+int preOrderGoldenVal[]={10,4,2,1,3,5,7,20,15,25,24,28};
+
+int curlIndex;
+int indexLimit;
+int *goldenIntValues;
+
+
+void verifyInorderInteger(Node *node){
+  char error[1028];
+  if(goldenIntValues[curlIndex]!=node->Data){
+    sprintf(error,"At index %d,expected %d but was %d",
+            curlIndex,goldenIntValues[curlIndex],node->Data);
+    TEST_FAIL_MESSAGE(error);
+  }
+  if(curlIndex>=indexLimit){
+    sprintf(error,"The number of values is greater than the number of golden values (%d)",indexLimit);
+    TEST_FAIL_MESSAGE(error);
+  }
+  curlIndex++;
+}
+void test_verify(void){
+  goldenIntValues=inOrderGoldenVal;
+  indexLimit= sizeof(inOrderGoldenVal)/sizeof(int);
+  _printTraversalPostorder(&node10,verifyInorderInteger);
+  if(curlIndex<indexLimit){
+    char error[1028];
+    sprintf(error,"The number of values is lesser than the number of golden values (%d)",indexLimit);
+    TEST_FAIL_MESSAGE(error);
+  }
+}
 
 void setUp(void)
 {
@@ -34,7 +66,7 @@ void setUp(void)
 void tearDown(void)
 {
 }
-/*
+
 void test_Traversal_printTraversalInorder(void)
 {
     printf("%s","Inorder:\n");
@@ -50,7 +82,7 @@ void test_Traversal_printTraversalPreorder(void)
     printf("%s","printTraversalPreorder:\n");
     printTraversalPreorder(&node10);
 }
-*/
+
 void test_printTraversalInorder_with_printInteger(void){
   _printTraversalInorder(&node10,printInteger);
 }
@@ -61,4 +93,8 @@ void test_printTraversalInorder_with_printDecoratedInteger(void){
 
 void test_printTraversalInorder_with_printString(void){
   _printTraversalInorder((Node *)&nodeAdam,printString);
+}
+
+void test_verify_inOrderGoldenVal(void){
+
 }

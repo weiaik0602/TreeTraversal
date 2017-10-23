@@ -31,3 +31,11 @@ void _printTraversalInorder(Node *node, void(*print)(Node *node)){
   if(node->Right !=NULL)
   _printTraversalInorder(node->Right,print);
 }
+
+void _printTraversalPostorder(Node *node, void(*print)(Node *node)){
+  if(node->Left!=NULL)
+    _printTraversalPostorder(node->Left,print);
+  if(node->Right!=NULL)
+    _printTraversalPostorder(node->Right,print);
+  printf("%d"",",node->Data);
+}
