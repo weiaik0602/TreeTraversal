@@ -1,5 +1,6 @@
 #include "unity.h"
 #include "Traversal.h"
+#include "NodePrint.h"
 #include <stdio.h>
 
 Node node1={NULL,NULL,1};
@@ -15,6 +16,17 @@ Node node4={&node2,&node5,4};
 Node node20={&node15,&node25,20};
 Node node10={&node4,&node20,10};
 
+
+
+StringNode nodeAli = {NULL,NULL,"Ali"};
+StringNode nodeAbu = {NULL,NULL,"Abu"};
+StringNode nodeDavid = {NULL,NULL,"David"};
+StringNode nodeSteven = {NULL,NULL,"Steven"};
+StringNode nodeAbraham = {&nodeAli,&nodeAbu,"Abraham"};
+StringNode nodeNoah = {&nodeDavid,&nodeSteven,"Noah"};
+StringNode nodeAdam = {&nodeAbraham,&nodeNoah,"Adam"};
+
+
 void setUp(void)
 {
 }
@@ -22,7 +34,7 @@ void setUp(void)
 void tearDown(void)
 {
 }
-
+/*
 void test_Traversal_printTraversalInorder(void)
 {
     printf("%s","Inorder:\n");
@@ -37,4 +49,16 @@ void test_Traversal_printTraversalPreorder(void)
 {
     printf("%s","printTraversalPreorder:\n");
     printTraversalPreorder(&node10);
+}
+*/
+void test_printTraversalInorder_with_printInteger(void){
+  _printTraversalInorder(&node10,printInteger);
+}
+
+void test_printTraversalInorder_with_printDecoratedInteger(void){
+  _printTraversalInorder(&node10,printDecoratedInteger);
+}
+
+void test_printTraversalInorder_with_printString(void){
+  _printTraversalInorder((Node *)&nodeAdam,printString);
 }

@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 
+
 void printTraversalInorder(Node *node){
   if(node->Left!=NULL)
     printTraversalInorder(node->Left);
@@ -9,8 +10,6 @@ void printTraversalInorder(Node *node){
   if(node->Right!=NULL)
     printTraversalInorder(node->Right);
 }
-
-
 void printTraversalPostorder(Node *node){
   if(node->Left!=NULL)
     printTraversalPostorder(node->Left);
@@ -24,4 +23,11 @@ void printTraversalPreorder(Node *node){
     printTraversalPreorder(node->Left);
   if(node->Right!=NULL)
     printTraversalPreorder(node->Right);
+}
+void _printTraversalInorder(Node *node, void(*print)(Node *node)){
+  if(node->Left !=NULL)
+  _printTraversalInorder(node->Left,print);
+  print(node);
+  if(node->Right !=NULL)
+  _printTraversalInorder(node->Right,print);
 }

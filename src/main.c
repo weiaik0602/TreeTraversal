@@ -3,6 +3,7 @@
 #include "Traversal.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <Node.h>
 
 Node node1={NULL,NULL,1};
 Node node3={NULL,NULL,3};
